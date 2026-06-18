@@ -3,206 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Countpitch</title>
+<title>投球記録 | Countpitch</title>
 
 <style>
 :root {
-  --navy: #041e42;
-  --red: #bf0d3e;
-  --line: #d7dce3;
-  --bg: #f1f3f6;
+  --navy:#041e42;
+  --red:#bf0d3e;
+  --line:#d7dce3;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: linear-gradient(135deg, #041e42 0%, #0b2447 34%, #f1f3f6 34%);
-  color: #111827;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  background:linear-gradient(135deg,#041e42 0%,#0b2447 34%,#f1f3f6 34%);
+  color:#111827;
 }
 
 header {
-  background: #041e42;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 5px solid var(--red);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background:#041e42;
+  color:white;
+  padding:20px;
+  text-align:center;
+  border-bottom:5px solid var(--red);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 h1 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  margin:0;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 h1::before {
-  content: "⚾ ";
+  content:"⚾ ";
 }
 
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px;
+  max-width:1200px;
+  margin:auto;
+  padding:16px;
 }
 
 .card {
-  background: rgba(255,255,255,0.96);
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 10px 24px rgba(4,30,66,0.18);
+  background:rgba(255,255,255,.96);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 10px 24px rgba(4,30,66,.18);
 }
 
 h2 {
-  margin-top: 0;
-  color: var(--navy);
-  border-left: 8px solid var(--red);
-  padding-left: 10px;
-  font-size: 20px;
-  font-weight: 900;
+  margin-top:0;
+  color:var(--navy);
+  border-left:8px solid var(--red);
+  padding-left:10px;
+  font-size:20px;
+  font-weight:900;
 }
 
 h3 {
-  background: var(--navy);
-  color: white;
-  padding: 10px 12px;
-  border-radius: 10px;
+  background:var(--navy);
+  color:white;
+  padding:10px 12px;
+  border-radius:10px;
 }
 
 input, select {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 20px;
-  padding: 13px;
-  border-radius: 12px;
-  border: 2px solid var(--navy);
-  font-weight: bold;
-  margin-bottom: 10px;
+  width:100%;
+  box-sizing:border-box;
+  font-size:20px;
+  padding:13px;
+  border-radius:12px;
+  border:2px solid var(--navy);
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 .button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-  gap: 10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+  gap:10px;
 }
 
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 15px 10px;
-  color: white;
-  font-size: 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.25);
+button, .page-link {
+  border:none;
+  border-radius:12px;
+  padding:15px 10px;
+  color:white;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  box-shadow:0 4px 0 rgba(0,0,0,.25);
 }
 
 button:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  transform:translateY(3px);
+  box-shadow:0 1px 0 rgba(0,0,0,.25);
 }
 
-.called { background: linear-gradient(#0b5ed7, #084298); }
-.foul { background: linear-gradient(#6f42c1, #4c1d95); }
-.swing { background: linear-gradient(#dc2626, #991b1b); }
-.ball { background: linear-gradient(#16a34a, #166534); }
-.out { background: linear-gradient(#f97316, #c2410c); }
-.hit { background: linear-gradient(#0891b2, #155e75); }
+.called { background:linear-gradient(#0b5ed7,#084298); }
+.foul { background:linear-gradient(#6f42c1,#4c1d95); }
+.swing { background:linear-gradient(#dc2626,#991b1b); }
+.ball { background:linear-gradient(#16a34a,#166534); }
+.out { background:linear-gradient(#f97316,#c2410c); }
+.hit { background:linear-gradient(#0891b2,#155e75); }
 
-.main-btn { background: linear-gradient(#bf0d3e, #8a092d); }
-.sub-btn { background: linear-gradient(#6b7280, #374151); }
-.reset-btn { background: linear-gradient(#111827, #000); width: 100%; }
-
-.page-link {
-  display: block;
-  text-align: center;
-  background: #041e42;
-  color: white;
-  text-decoration: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 900;
-  margin-top: 10px;
-}
+.main-btn { background:linear-gradient(#bf0d3e,#8a092d); }
+.sub-btn { background:linear-gradient(#6b7280,#374151); }
+.reset-btn { background:linear-gradient(#111827,#000); width:100%; }
+.page-link { background:#041e42; margin-top:10px; }
 
 .summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
 }
 
 .stat {
-  background: linear-gradient(180deg, #ffffff, #eef2f7);
-  border-radius: 14px;
-  padding: 14px;
-  text-align: center;
-  border-top: 5px solid var(--navy);
+  background:linear-gradient(180deg,#fff,#eef2f7);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+  border-top:5px solid var(--navy);
 }
 
 .stat-title {
-  font-size: 13px;
-  color: #4b5563;
-  font-weight: bold;
+  font-size:13px;
+  color:#4b5563;
+  font-weight:bold;
 }
 
 .stat-value {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--navy);
+  font-size:26px;
+  font-weight:900;
+  color:var(--navy);
 }
 
 .table-wrap {
-  overflow-x: auto;
-  border-radius: 14px;
-  border: 1px solid var(--line);
+  overflow-x:auto;
+  border-radius:14px;
+  border:1px solid var(--line);
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 900px;
-  background: white;
+  border-collapse:collapse;
+  width:100%;
+  min-width:900px;
+  background:white;
 }
 
 th {
-  background: var(--navy);
-  color: white;
+  background:var(--navy);
+  color:white;
 }
 
 th, td {
-  border: 1px solid var(--line);
-  padding: 9px;
-  text-align: center;
-  white-space: nowrap;
+  border:1px solid var(--line);
+  padding:9px;
+  text-align:center;
+  white-space:nowrap;
 }
 
 tr:nth-child(even) td {
-  background: #f8fafc;
+  background:#f8fafc;
 }
 
 .pitch-section {
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #e5e7eb;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:2px solid #e5e7eb;
 }
 
 .history-item {
-  background: #f8fafc;
-  border-left: 6px solid var(--red);
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-weight: bold;
+  background:#f8fafc;
+  border-left:6px solid var(--red);
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-@media (max-width: 700px) {
-  h1 { font-size: 22px; }
-  .container { padding: 10px; }
-  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+.note {
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+
+@media(max-width:700px) {
+  h1 { font-size:22px; }
+  .container { padding:10px; }
+  .summary-grid { grid-template-columns:repeat(2,1fr); }
 }
 </style>
 </head>
@@ -216,22 +213,102 @@ tr:nth-child(even) td {
 <div class="container">
 
 <div class="card">
+  <h2>ページ移動</h2>
+  <div class="button-grid">
+    <a href="index.html" class="page-link">メインページへ戻る</a>
+    <a href="players.html" class="page-link">選手名鑑へ</a>
+  </div>
+</div>
+
+<div class="card">
   <h2>登板選手</h2>
   <select id="playerSelect" onchange="changePlayer()">
     <option value="">選手を選択</option>
   </select>
-  <a href="players.html" class="page-link">選手名鑑・通算成績を見る</a>
 </div>
 
 <div class="card">
   <h2>登板管理</h2>
+
   <input id="gameTitleInput" placeholder="登板名 例：練習試合 vs Aチーム">
+
   <div class="button-grid">
     <button class="main-btn" onclick="startNewGame()">新しい登板を開始</button>
     <button class="sub-btn" onclick="showHistory()">登板履歴を見る</button>
   </div>
+
   <br>
   <div id="currentGameName">現在の登板：なし</div>
+
+  <hr>
+
+  <h3>登板結果</h3>
+
+  <div class="summary-grid">
+    <div class="stat">
+      <div class="stat-title">投球回</div>
+      <div class="stat-value" id="inningsPitched">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">アウト数</div>
+      <div class="stat-value" id="outsRecorded">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">失点</div>
+      <div class="stat-value" id="runsAllowed">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">自責点</div>
+      <div class="stat-value" id="earnedRuns">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">前投手責任走者生還</div>
+      <div class="stat-value" id="inheritedRunsScored">0</div>
+    </div>
+  </div>
+
+  <br>
+
+  <h3>アウト記録</h3>
+  <div class="button-grid">
+    <button class="out" onclick="addOut(1)">+1アウト</button>
+    <button class="out" onclick="addOut(2)">+2アウト</button>
+    <button class="out" onclick="addOut(3)">+3アウト</button>
+    <button class="sub-btn" onclick="removeOut()">アウト取消</button>
+  </div>
+
+  <br>
+
+  <h3>失点記録</h3>
+  <div class="button-grid">
+    <button class="main-btn" onclick="addRun('earned')">失点 + 自責</button>
+    <button class="sub-btn" onclick="addRun('unearned')">失点 + 非自責</button>
+    <button class="sub-btn" onclick="addRun('inherited')">前投手責任の走者生還</button>
+  </div>
+
+  <br>
+
+  <h3>降板後の責任走者</h3>
+  <div class="button-grid">
+    <button class="main-btn" onclick="addRunAfterExit('earned')">降板後生還 自責</button>
+    <button class="sub-btn" onclick="addRunAfterExit('unearned')">降板後生還 非自責</button>
+  </div>
+
+  <br>
+
+  <h3>記録取消</h3>
+  <div class="button-grid">
+    <button class="sub-btn" onclick="removeRun()">失点取消</button>
+    <button class="sub-btn" onclick="removeEarnedRun()">自責点取消</button>
+    <button class="sub-btn" onclick="removeInheritedRun()">前投手責任生還取消</button>
+  </div>
+
+  <p class="note">
+    ※ 投球回はアウト数から自動計算します。<br>
+    ※ エラーが絡む失点は「非自責」、通常の失点は「自責」を選びます。<br>
+    ※ 前投手が残した走者を返した場合は「前投手責任の走者生還」を選びます。この投手の失点には加算しません。<br>
+    ※ 降板後に自分の残した走者が生還した場合は「降板後生還」を選びます。
+  </p>
 </div>
 
 <div class="card">
@@ -274,23 +351,9 @@ tr:nth-child(even) td {
     <div class="stat"><div class="stat-title">ストライク率</div><div class="stat-value"><span id="strikeRate">0</span>%</div></div>
     <div class="stat"><div class="stat-title">空振り率</div><div class="stat-value"><span id="swingRate">0</span>%</div></div>
     <div class="stat"><div class="stat-title">被打率</div><div class="stat-value" id="battingAverage">0</div></div>
-    <div class="stat"><div class="stat-title">K/BB</div><div class="stat-value" id="kbb">0</div></div>
     <div class="stat"><div class="stat-title">三振</div><div class="stat-value" id="totalStrikeout">0</div></div>
     <div class="stat"><div class="stat-title">四球</div><div class="stat-value" id="totalWalk">0</div></div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>直球・変化球別</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>区分</th><th>投球数</th><th>割合</th><th>ストライク率</th><th>空振り率</th><th>被打率</th>
-        </tr>
-      </thead>
-      <tbody id="groupTable"></tbody>
-    </table>
+    <div class="stat"><div class="stat-title">K/BB</div><div class="stat-value" id="kbb">0</div></div>
   </div>
 </div>
 
@@ -300,7 +363,13 @@ tr:nth-child(even) td {
     <table>
       <thead>
         <tr>
-          <th>球種</th><th>投球数</th><th>ストライク率</th><th>空振り率</th><th>被打率</th><th>凡打</th><th>安打</th>
+          <th>球種</th>
+          <th>投球数</th>
+          <th>ストライク率</th>
+          <th>空振り率</th>
+          <th>被打率</th>
+          <th>凡打</th>
+          <th>安打</th>
         </tr>
       </thead>
       <tbody id="pitchTypeTable"></tbody>
@@ -314,8 +383,19 @@ tr:nth-child(even) td {
     <table>
       <thead>
         <tr>
-          <th>回</th><th>球数</th><th>直球</th><th>変化球</th><th>ストライク</th><th>ボール</th>
-          <th>見逃し</th><th>ファール</th><th>空振り</th><th>凡打</th><th>安打</th><th>三振</th><th>四球</th>
+          <th>回</th>
+          <th>球数</th>
+          <th>直球</th>
+          <th>変化球</th>
+          <th>ストライク</th>
+          <th>ボール</th>
+          <th>見逃し</th>
+          <th>ファール</th>
+          <th>空振り</th>
+          <th>凡打</th>
+          <th>安打</th>
+          <th>三振</th>
+          <th>四球</th>
         </tr>
       </thead>
       <tbody id="inningTable"></tbody>
@@ -336,25 +416,25 @@ tr:nth-child(even) td {
 
 <script>
 const pitchTypes = {
-  fastball: { name: "直球", group: "fastball" },
-  slider: { name: "スライダー", group: "breaking" },
-  curve: { name: "カーブ", group: "breaking" },
-  fork: { name: "フォーク", group: "breaking" },
-  changeup: { name: "チェンジアップ", group: "breaking" },
-  cutter: { name: "カットボール", group: "breaking" },
-  sinker: { name: "シンカー", group: "breaking" }
+  fastball: { name:"直球", group:"fastball" },
+  slider: { name:"スライダー", group:"breaking" },
+  curve: { name:"カーブ", group:"breaking" },
+  fork: { name:"フォーク", group:"breaking" },
+  changeup: { name:"チェンジアップ", group:"breaking" },
+  cutter: { name:"カットボール", group:"breaking" },
+  sinker: { name:"シンカー", group:"breaking" }
 };
 
 const pitchItems = ["called", "foul", "swing", "ball", "out", "hit"];
 const resultItems = ["strikeout", "walk"];
 
 const itemNames = {
-  called: "見逃し",
-  foul: "ファール",
-  swing: "空振り",
-  ball: "ボール",
-  out: "凡打",
-  hit: "安打"
+  called:"見逃し",
+  foul:"ファール",
+  swing:"空振り",
+  ball:"ボール",
+  out:"凡打",
+  hit:"安打"
 };
 
 let players = JSON.parse(localStorage.getItem("countpitchPlayers")) || {};
@@ -375,20 +455,39 @@ function createEmptyData() {
 
   for (let inn = 1; inn <= 9; inn++) {
     i[inn] = {
-      fastball: 0,
-      breaking: 0,
-      called: 0,
-      foul: 0,
-      swing: 0,
-      ball: 0,
-      out: 0,
-      hit: 0,
-      strikeout: 0,
-      walk: 0
+      fastball:0,
+      breaking:0,
+      called:0,
+      foul:0,
+      swing:0,
+      ball:0,
+      out:0,
+      hit:0,
+      strikeout:0,
+      walk:0
     };
   }
 
-  return { counts: c, inningCounts: i };
+  return { counts:c, inningCounts:i };
+}
+
+function createEmptyResult() {
+  return {
+    outs:0,
+    runs:0,
+    earnedRuns:0,
+    inheritedRunsScored:0
+  };
+}
+
+function ensureGameResult(game) {
+  if (!game.result) {
+    game.result = createEmptyResult();
+  }
+
+  if (game.result.inheritedRunsScored === undefined) {
+    game.result.inheritedRunsScored = game.result.inheritedRuns || 0;
+  }
 }
 
 function savePlayers() {
@@ -447,14 +546,14 @@ function startNewGame() {
   const titleInput = document.getElementById("gameTitleInput");
   const title = titleInput.value.trim() || "登板";
   const date = new Date().toLocaleString("ja-JP");
-
   const data = createEmptyData();
 
   players[currentPlayer].games.push({
     title,
     date,
-    counts: data.counts,
-    inningCounts: data.inningCounts
+    counts:data.counts,
+    inningCounts:data.inningCounts,
+    result:createEmptyResult()
   });
 
   currentGameIndex = players[currentPlayer].games.length - 1;
@@ -474,6 +573,7 @@ function loadEmpty() {
 
 function loadCurrentGame() {
   const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
   counts = game.counts;
   inningCounts = game.inningCounts;
   updateAll();
@@ -482,48 +582,6 @@ function loadCurrentGame() {
 function loadGame(index) {
   currentGameIndex = index;
   loadCurrentGame();
-}
-
-function showHistory() {
-  const area = document.getElementById("historyArea");
-
-  if (!currentPlayer) {
-    area.innerHTML = "選手を選択してください。";
-    return;
-  }
-
-  const games = players[currentPlayer].games || [];
-
-  if (games.length === 0) {
-    area.innerHTML = "登板履歴はありません。";
-    return;
-  }
-
-  area.innerHTML = "";
-
-  games.forEach((game, index) => {
-    const pitch = getGamePitch(game);
-
-    area.innerHTML += `
-      <div class="history-item" onclick="loadGame(${index})">
-        ${game.date}<br>
-        ${game.title}<br>
-        ${pitch}球
-      </div>
-    `;
-  });
-}
-
-function getGamePitch(game) {
-  let total = 0;
-
-  for (const type in pitchTypes) {
-    pitchItems.forEach(item => {
-      total += game.counts[type][item];
-    });
-  }
-
-  return total;
 }
 
 function createButtons() {
@@ -568,6 +626,137 @@ function addResult(resultType) {
 
   savePlayers();
   updateAll();
+}
+
+function addOut(num) {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.outs += num;
+
+  savePlayers();
+  updateAll();
+}
+
+function removeOut() {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.outs = Math.max(0, game.result.outs - 1);
+
+  savePlayers();
+  updateAll();
+}
+
+function addRun(type) {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  if (type === "earned") {
+    game.result.runs++;
+    game.result.earnedRuns++;
+  }
+
+  if (type === "unearned") {
+    game.result.runs++;
+  }
+
+  if (type === "inherited") {
+    game.result.inheritedRunsScored++;
+  }
+
+  savePlayers();
+  updateAll();
+}
+
+function addRunAfterExit(type) {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.runs++;
+
+  if (type === "earned") {
+    game.result.earnedRuns++;
+  }
+
+  savePlayers();
+  updateAll();
+}
+
+function removeRun() {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.runs = Math.max(0, game.result.runs - 1);
+
+  if (game.result.earnedRuns > game.result.runs) {
+    game.result.earnedRuns = game.result.runs;
+  }
+
+  savePlayers();
+  updateAll();
+}
+
+function removeEarnedRun() {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.earnedRuns = Math.max(0, game.result.earnedRuns - 1);
+
+  savePlayers();
+  updateAll();
+}
+
+function removeInheritedRun() {
+  if (!requireGame()) return;
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  game.result.inheritedRunsScored = Math.max(0, game.result.inheritedRunsScored - 1);
+
+  savePlayers();
+  updateAll();
+}
+
+function formatInnings(outs) {
+  const innings = Math.floor(outs / 3);
+  const remain = outs % 3;
+
+  if (remain === 0) return String(innings);
+  return innings + "." + remain;
+}
+
+function updateGameResultDisplay() {
+  if (currentGameIndex === null || !currentPlayer) {
+    document.getElementById("inningsPitched").textContent = "0";
+    document.getElementById("outsRecorded").textContent = "0";
+    document.getElementById("runsAllowed").textContent = "0";
+    document.getElementById("earnedRuns").textContent = "0";
+    document.getElementById("inheritedRunsScored").textContent = "0";
+    return;
+  }
+
+  const game = players[currentPlayer].games[currentGameIndex];
+  ensureGameResult(game);
+
+  document.getElementById("inningsPitched").textContent = formatInnings(game.result.outs);
+  document.getElementById("outsRecorded").textContent = game.result.outs;
+  document.getElementById("runsAllowed").textContent = game.result.runs;
+  document.getElementById("earnedRuns").textContent = game.result.earnedRuns;
+  document.getElementById("inheritedRunsScored").textContent = game.result.inheritedRunsScored;
 }
 
 function sumType(type) {
@@ -644,43 +833,18 @@ function updateAll() {
   document.getElementById("totalPitch").textContent = totalPitch;
   document.getElementById("fastballPitch").textContent = fastballPitch;
   document.getElementById("breakingPitch").textContent = breakingPitch;
-
   document.getElementById("fastballRate").textContent = percent(fastballPitch, totalPitch);
   document.getElementById("breakingRate").textContent = percent(breakingPitch, totalPitch);
   document.getElementById("strikeRate").textContent = percent(strikeCount(), totalPitch);
   document.getElementById("swingRate").textContent = percent(sumItem("swing"), totalPitch);
   document.getElementById("battingAverage").textContent = battingAverage();
-
   document.getElementById("totalStrikeout").textContent = totalStrikeout;
   document.getElementById("totalWalk").textContent = totalWalk;
   document.getElementById("kbb").textContent = totalWalk === 0 ? totalStrikeout : (totalStrikeout / totalWalk).toFixed(2);
 
-  updateGroupTable(totalPitch);
   updatePitchTypeTable();
   updateInningTable();
-}
-
-function updateGroupTable(totalPitch) {
-  const tbody = document.getElementById("groupTable");
-  tbody.innerHTML = "";
-
-  [
-    { key: "fastball", name: "直球" },
-    { key: "breaking", name: "変化球" }
-  ].forEach(g => {
-    const pitch = sumGroup(g.key);
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${g.name}</td>
-        <td>${pitch}</td>
-        <td>${percent(pitch, totalPitch)}%</td>
-        <td>${percent(strikeCount(g.key), pitch)}%</td>
-        <td>${percent(sumItem("swing", g.key), pitch)}%</td>
-        <td>${battingAverage(g.key)}</td>
-      </tr>
-    `;
-  });
+  updateGameResultDisplay();
 }
 
 function updatePitchTypeTable() {
@@ -689,7 +853,12 @@ function updatePitchTypeTable() {
 
   for (const type in pitchTypes) {
     const pitch = sumType(type);
-    const strike = counts[type].called + counts[type].foul + counts[type].swing + counts[type].out + counts[type].hit;
+    const strike =
+      counts[type].called +
+      counts[type].foul +
+      counts[type].swing +
+      counts[type].out +
+      counts[type].hit;
 
     tbody.innerHTML += `
       <tr>
@@ -734,14 +903,59 @@ function updateInningTable() {
   }
 }
 
+function getGamePitch(game) {
+  let total = 0;
+
+  for (const type in pitchTypes) {
+    pitchItems.forEach(item => {
+      total += game.counts?.[type]?.[item] || 0;
+    });
+  }
+
+  return total;
+}
+
+function showHistory() {
+  const area = document.getElementById("historyArea");
+
+  if (!currentPlayer) {
+    area.innerHTML = "選手を選択してください。";
+    return;
+  }
+
+  const games = players[currentPlayer].games || [];
+
+  if (games.length === 0) {
+    area.innerHTML = "登板履歴はありません。";
+    return;
+  }
+
+  area.innerHTML = "";
+
+  games.forEach((game, index) => {
+    ensureGameResult(game);
+    const pitch = getGamePitch(game);
+
+    area.innerHTML += `
+      <div class="history-item" onclick="loadGame(${index})">
+        ${game.date}<br>
+        ${game.title}<br>
+        ${formatInnings(game.result.outs)}回 / ${pitch}球 / ${game.result.runs}失点 / ${game.result.earnedRuns}自責
+      </div>
+    `;
+  });
+}
+
 function resetCurrentGame() {
   if (!requireGame()) return;
 
   if (!confirm("現在の登板をリセットしますか？")) return;
 
   const data = createEmptyData();
+
   players[currentPlayer].games[currentGameIndex].counts = data.counts;
   players[currentPlayer].games[currentGameIndex].inningCounts = data.inningCounts;
+  players[currentPlayer].games[currentGameIndex].result = createEmptyResult();
 
   loadCurrentGame();
   savePlayers();
