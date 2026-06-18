@@ -9,7 +9,6 @@
 :root {
   --navy: #041e42;
   --red: #bf0d3e;
-  --white: #ffffff;
   --line: #d7dce3;
   --bg: #f1f3f6;
 }
@@ -117,6 +116,18 @@ button:active {
 .sub-btn { background: linear-gradient(#6b7280, #374151); }
 .reset-btn { background: linear-gradient(#111827, #000); width: 100%; }
 
+.page-link {
+  display: block;
+  text-align: center;
+  background: #041e42;
+  color: white;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-top: 10px;
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -205,16 +216,11 @@ tr:nth-child(even) td {
 <div class="container">
 
 <div class="card">
-  <h2>選手管理</h2>
-  <input id="playerNameInput" placeholder="選手名を入力">
-  <div class="button-grid">
-    <button class="main-btn" onclick="addPlayer()">選手登録</button>
-    <button class="sub-btn" onclick="deletePlayer()">選手削除</button>
-  </div>
-  <br>
+  <h2>登板選手</h2>
   <select id="playerSelect" onchange="changePlayer()">
     <option value="">選手を選択</option>
   </select>
+  <a href="players.html" class="page-link">選手名鑑・通算成績を見る</a>
 </div>
 
 <div class="card">
@@ -385,61 +391,24 @@ function createEmptyData() {
   return { counts: c, inningCounts: i };
 }
 
-function createPlayer() {
-  return {
-    games: []
-  };
-}
-
 function savePlayers() {
   localStorage.setItem("countpitchPlayers", JSON.stringify(players));
-}
-
-function addPlayer() {
-  const name = document.getElementById("playerNameInput").value.trim();
-
-  if (!name) {
-    alert("選手名を入力してください");
-    return;
-  }
-
-  if (!players[name]) {
-    players[name] = createPlayer();
-  }
-
-  currentPlayer = name;
-  currentGameIndex = null;
-  document.getElementById("playerNameInput").value = "";
-
-  updatePlayerSelect();
-  loadEmpty();
-  savePlayers();
-}
-
-function deletePlayer() {
-  if (!currentPlayer) {
-    alert("選手を選択してください");
-    return;
-  }
-
-  if (!confirm(currentPlayer + " を削除しますか？")) return;
-
-  delete players[currentPlayer];
-  currentPlayer = "";
-  currentGameIndex = null;
-
-  updatePlayerSelect();
-  loadEmpty();
-  savePlayers();
 }
 
 function updatePlayerSelect() {
   const select = document.getElementById("playerSelect");
   select.innerHTML = '<option value="">選手を選択</option>';
 
-  for (const name in players) {
-    select.innerHTML += `<option value="${name}" ${name === currentPlayer ? "selected" : ""}>${name}</option>`;
+  const names = Object.keys(players);
+
+  if (names.length === 0) {
+    select.innerHTML += '<option value="" disabled>登録済み選手がありません</option>';
+    return;
   }
+
+  names.forEach(name => {
+    select.innerHTML += `<option value="${name}" ${name === currentPlayer ? "selected" : ""}>${name}</option>`;
+  });
 }
 
 function changePlayer() {
@@ -451,7 +420,7 @@ function changePlayer() {
 
 function requirePlayer() {
   if (!currentPlayer) {
-    alert("先に選手を登録、または選択してください");
+    alert("先に選手名鑑ページで選手を登録し、この画面で選手を選択してください");
     return false;
   }
   return true;
@@ -470,6 +439,10 @@ function requireGame() {
 
 function startNewGame() {
   if (!requirePlayer()) return;
+
+  if (!players[currentPlayer].games) {
+    players[currentPlayer].games = [];
+  }
 
   const titleInput = document.getElementById("gameTitleInput");
   const title = titleInput.value.trim() || "登板";
@@ -519,7 +492,7 @@ function showHistory() {
     return;
   }
 
-  const games = players[currentPlayer].games;
+  const games = players[currentPlayer].games || [];
 
   if (games.length === 0) {
     area.innerHTML = "登板履歴はありません。";
