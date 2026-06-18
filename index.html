@@ -7,202 +7,129 @@
 
 <style>
 :root {
-  --navy: #041e42;
-  --red: #bf0d3e;
-  --line: #d7dce3;
-  --bg: #f1f3f6;
+  --navy:#041e42;
+  --red:#bf0d3e;
+  --bg:#f1f3f6;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: linear-gradient(135deg, #041e42 0%, #0b2447 34%, #f1f3f6 34%);
-  color: #111827;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  background:linear-gradient(135deg,#041e42 0%,#0b2447 40%,#f1f3f6 40%);
+  color:#111827;
+  min-height:100vh;
 }
 
 header {
-  background: #041e42;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 5px solid var(--red);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background:#041e42;
+  color:white;
+  padding:24px;
+  text-align:center;
+  border-bottom:5px solid var(--red);
 }
 
 h1 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  margin:0;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 h1::before {
-  content: "⚾ ";
+  content:"⚾ ";
 }
 
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px;
+  max-width:900px;
+  margin:auto;
+  padding:24px;
 }
 
-.card {
-  background: rgba(255,255,255,0.96);
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 10px 24px rgba(4,30,66,0.18);
+.hero {
+  background:rgba(255,255,255,0.96);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 28px rgba(4,30,66,0.25);
+  margin-top:30px;
+  text-align:center;
 }
 
-h2 {
-  margin-top: 0;
-  color: var(--navy);
-  border-left: 8px solid var(--red);
-  padding-left: 10px;
-  font-size: 20px;
-  font-weight: 900;
+.hero-title {
+  font-size:28px;
+  font-weight:900;
+  color:var(--navy);
+  margin-bottom:10px;
 }
 
-h3 {
-  background: var(--navy);
-  color: white;
-  padding: 10px 12px;
-  border-radius: 10px;
+.hero-text {
+  font-size:16px;
+  color:#4b5563;
+  margin-bottom:24px;
 }
 
-input, select {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 20px;
-  padding: 13px;
-  border-radius: 12px;
-  border: 2px solid var(--navy);
-  font-weight: bold;
-  margin-bottom: 10px;
+.menu-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
 }
 
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-  gap: 10px;
+.menu-card {
+  display:block;
+  text-decoration:none;
+  color:white;
+  border-radius:18px;
+  padding:28px 18px;
+  font-weight:900;
+  box-shadow:0 6px 0 rgba(0,0,0,0.25);
 }
 
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 15px 10px;
-  color: white;
-  font-size: 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.25);
+.menu-card:active {
+  transform:translateY(4px);
+  box-shadow:0 2px 0 rgba(0,0,0,0.25);
 }
 
-button:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+.record {
+  background:linear-gradient(#bf0d3e,#8a092d);
 }
 
-.called { background: linear-gradient(#0b5ed7, #084298); }
-.foul { background: linear-gradient(#6f42c1, #4c1d95); }
-.swing { background: linear-gradient(#dc2626, #991b1b); }
-.ball { background: linear-gradient(#16a34a, #166534); }
-.out { background: linear-gradient(#f97316, #c2410c); }
-.hit { background: linear-gradient(#0891b2, #155e75); }
-
-.main-btn { background: linear-gradient(#bf0d3e, #8a092d); }
-.sub-btn { background: linear-gradient(#6b7280, #374151); }
-.reset-btn { background: linear-gradient(#111827, #000); width: 100%; }
-
-.page-link {
-  display: block;
-  text-align: center;
-  background: #041e42;
-  color: white;
-  text-decoration: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 900;
-  margin-top: 10px;
+.players {
+  background:linear-gradient(#041e42,#0b2447);
 }
 
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+.menu-icon {
+  font-size:42px;
+  margin-bottom:10px;
 }
 
-.stat {
-  background: linear-gradient(180deg, #ffffff, #eef2f7);
-  border-radius: 14px;
-  padding: 14px;
-  text-align: center;
-  border-top: 5px solid var(--navy);
+.menu-title {
+  font-size:22px;
+  margin-bottom:8px;
 }
 
-.stat-title {
-  font-size: 13px;
-  color: #4b5563;
-  font-weight: bold;
+.menu-desc {
+  font-size:14px;
+  opacity:0.9;
 }
 
-.stat-value {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--navy);
+.footer {
+  text-align:center;
+  color:white;
+  margin-top:30px;
+  font-size:13px;
 }
 
-.table-wrap {
-  overflow-x: auto;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-}
+@media(max-width:700px) {
+  h1 {
+    font-size:26px;
+  }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 900px;
-  background: white;
-}
+  .container {
+    padding:14px;
+  }
 
-th {
-  background: var(--navy);
-  color: white;
-}
-
-th, td {
-  border: 1px solid var(--line);
-  padding: 9px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-tr:nth-child(even) td {
-  background: #f8fafc;
-}
-
-.pitch-section {
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #e5e7eb;
-}
-
-.history-item {
-  background: #f8fafc;
-  border-left: 6px solid var(--red);
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-@media (max-width: 700px) {
-  h1 { font-size: 22px; }
-  .container { padding: 10px; }
-  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero {
+    padding:20px;
+  }
 }
 </style>
 </head>
@@ -215,542 +142,36 @@ tr:nth-child(even) td {
 
 <div class="container">
 
-<div class="card">
-  <h2>登板選手</h2>
-  <select id="playerSelect" onchange="changePlayer()">
-    <option value="">選手を選択</option>
-  </select>
-  <a href="players.html" class="page-link">選手名鑑・通算成績を見る</a>
-</div>
+  <div class="hero">
+    <div class="hero-title">Pitching Data Manager</div>
+    <div class="hero-text">
+      投球記録・登板履歴・選手別通算成績を管理できます。
+    </div>
 
-<div class="card">
-  <h2>登板管理</h2>
-  <input id="gameTitleInput" placeholder="登板名 例：練習試合 vs Aチーム">
-  <div class="button-grid">
-    <button class="main-btn" onclick="startNewGame()">新しい登板を開始</button>
-    <button class="sub-btn" onclick="showHistory()">登板履歴を見る</button>
+    <div class="menu-grid">
+      <a href="record.html" class="menu-card record">
+        <div class="menu-icon">📋</div>
+        <div class="menu-title">投球記録</div>
+        <div class="menu-desc">
+          登板ごとの球数、球種、結果を記録する
+        </div>
+      </a>
+
+      <a href="players.html" class="menu-card players">
+        <div class="menu-icon">👤</div>
+        <div class="menu-title">選手名鑑</div>
+        <div class="menu-desc">
+          選手登録、通算成績、登板履歴を見る
+        </div>
+      </a>
+    </div>
   </div>
-  <br>
-  <div id="currentGameName">現在の登板：なし</div>
-</div>
 
-<div class="card">
-  <h2>現在のイニング</h2>
-  <select id="inningSelect">
-    <option value="1">1回</option>
-    <option value="2">2回</option>
-    <option value="3">3回</option>
-    <option value="4">4回</option>
-    <option value="5">5回</option>
-    <option value="6">6回</option>
-    <option value="7">7回</option>
-    <option value="8">8回</option>
-    <option value="9">9回</option>
-  </select>
-</div>
-
-<div class="card">
-  <h2>投球入力</h2>
-  <div id="pitchButtons"></div>
-</div>
-
-<div class="card">
-  <h2>打席結果</h2>
-  <div class="button-grid">
-    <button class="main-btn" onclick="addResult('strikeout')">三振</button>
-    <button class="main-btn" onclick="addResult('walk')">四球</button>
+  <div class="footer">
+    Countpitch Baseball Analytics
   </div>
-</div>
-
-<div class="card">
-  <h2>成績</h2>
-  <div class="summary-grid">
-    <div class="stat"><div class="stat-title">選手</div><div class="stat-value" id="currentPlayerName">未選択</div></div>
-    <div class="stat"><div class="stat-title">総投球数</div><div class="stat-value" id="totalPitch">0</div></div>
-    <div class="stat"><div class="stat-title">直球</div><div class="stat-value" id="fastballPitch">0</div></div>
-    <div class="stat"><div class="stat-title">変化球</div><div class="stat-value" id="breakingPitch">0</div></div>
-    <div class="stat"><div class="stat-title">直球割合</div><div class="stat-value"><span id="fastballRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">変化球割合</div><div class="stat-value"><span id="breakingRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">ストライク率</div><div class="stat-value"><span id="strikeRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">空振り率</div><div class="stat-value"><span id="swingRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">被打率</div><div class="stat-value" id="battingAverage">0</div></div>
-    <div class="stat"><div class="stat-title">K/BB</div><div class="stat-value" id="kbb">0</div></div>
-    <div class="stat"><div class="stat-title">三振</div><div class="stat-value" id="totalStrikeout">0</div></div>
-    <div class="stat"><div class="stat-title">四球</div><div class="stat-value" id="totalWalk">0</div></div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>直球・変化球別</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>区分</th><th>投球数</th><th>割合</th><th>ストライク率</th><th>空振り率</th><th>被打率</th>
-        </tr>
-      </thead>
-      <tbody id="groupTable"></tbody>
-    </table>
-  </div>
-</div>
-
-<div class="card">
-  <h2>球種別成績</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>球種</th><th>投球数</th><th>ストライク率</th><th>空振り率</th><th>被打率</th><th>凡打</th><th>安打</th>
-        </tr>
-      </thead>
-      <tbody id="pitchTypeTable"></tbody>
-    </table>
-  </div>
-</div>
-
-<div class="card">
-  <h2>イニング別詳細</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>回</th><th>球数</th><th>直球</th><th>変化球</th><th>ストライク</th><th>ボール</th>
-          <th>見逃し</th><th>ファール</th><th>空振り</th><th>凡打</th><th>安打</th><th>三振</th><th>四球</th>
-        </tr>
-      </thead>
-      <tbody id="inningTable"></tbody>
-    </table>
-  </div>
-</div>
-
-<div class="card">
-  <h2>登板履歴</h2>
-  <div id="historyArea">選手を選択して「登板履歴を見る」を押してください。</div>
-</div>
-
-<div class="card">
-  <button class="reset-btn" onclick="resetCurrentGame()">現在の登板をリセット</button>
-</div>
 
 </div>
-
-<script>
-const pitchTypes = {
-  fastball: { name: "直球", group: "fastball" },
-  slider: { name: "スライダー", group: "breaking" },
-  curve: { name: "カーブ", group: "breaking" },
-  fork: { name: "フォーク", group: "breaking" },
-  changeup: { name: "チェンジアップ", group: "breaking" },
-  cutter: { name: "カットボール", group: "breaking" },
-  sinker: { name: "シンカー", group: "breaking" }
-};
-
-const pitchItems = ["called", "foul", "swing", "ball", "out", "hit"];
-const resultItems = ["strikeout", "walk"];
-
-const itemNames = {
-  called: "見逃し",
-  foul: "ファール",
-  swing: "空振り",
-  ball: "ボール",
-  out: "凡打",
-  hit: "安打"
-};
-
-let players = JSON.parse(localStorage.getItem("countpitchPlayers")) || {};
-let currentPlayer = "";
-let currentGameIndex = null;
-
-let counts = {};
-let inningCounts = {};
-
-function createEmptyData() {
-  const c = {};
-  const i = {};
-
-  for (const type in pitchTypes) {
-    c[type] = {};
-    pitchItems.forEach(item => c[type][item] = 0);
-  }
-
-  for (let inn = 1; inn <= 9; inn++) {
-    i[inn] = {
-      fastball: 0,
-      breaking: 0,
-      called: 0,
-      foul: 0,
-      swing: 0,
-      ball: 0,
-      out: 0,
-      hit: 0,
-      strikeout: 0,
-      walk: 0
-    };
-  }
-
-  return { counts: c, inningCounts: i };
-}
-
-function savePlayers() {
-  localStorage.setItem("countpitchPlayers", JSON.stringify(players));
-}
-
-function updatePlayerSelect() {
-  const select = document.getElementById("playerSelect");
-  select.innerHTML = '<option value="">選手を選択</option>';
-
-  const names = Object.keys(players);
-
-  if (names.length === 0) {
-    select.innerHTML += '<option value="" disabled>登録済み選手がありません</option>';
-    return;
-  }
-
-  names.forEach(name => {
-    select.innerHTML += `<option value="${name}" ${name === currentPlayer ? "selected" : ""}>${name}</option>`;
-  });
-}
-
-function changePlayer() {
-  currentPlayer = document.getElementById("playerSelect").value;
-  currentGameIndex = null;
-  loadEmpty();
-  showHistory();
-}
-
-function requirePlayer() {
-  if (!currentPlayer) {
-    alert("先に選手名鑑ページで選手を登録し、この画面で選手を選択してください");
-    return false;
-  }
-  return true;
-}
-
-function requireGame() {
-  if (!requirePlayer()) return false;
-
-  if (currentGameIndex === null) {
-    alert("先に新しい登板を開始してください");
-    return false;
-  }
-
-  return true;
-}
-
-function startNewGame() {
-  if (!requirePlayer()) return;
-
-  if (!players[currentPlayer].games) {
-    players[currentPlayer].games = [];
-  }
-
-  const titleInput = document.getElementById("gameTitleInput");
-  const title = titleInput.value.trim() || "登板";
-  const date = new Date().toLocaleString("ja-JP");
-
-  const data = createEmptyData();
-
-  players[currentPlayer].games.push({
-    title,
-    date,
-    counts: data.counts,
-    inningCounts: data.inningCounts
-  });
-
-  currentGameIndex = players[currentPlayer].games.length - 1;
-  titleInput.value = "";
-
-  loadCurrentGame();
-  savePlayers();
-  showHistory();
-}
-
-function loadEmpty() {
-  const data = createEmptyData();
-  counts = data.counts;
-  inningCounts = data.inningCounts;
-  updateAll();
-}
-
-function loadCurrentGame() {
-  const game = players[currentPlayer].games[currentGameIndex];
-  counts = game.counts;
-  inningCounts = game.inningCounts;
-  updateAll();
-}
-
-function loadGame(index) {
-  currentGameIndex = index;
-  loadCurrentGame();
-}
-
-function showHistory() {
-  const area = document.getElementById("historyArea");
-
-  if (!currentPlayer) {
-    area.innerHTML = "選手を選択してください。";
-    return;
-  }
-
-  const games = players[currentPlayer].games || [];
-
-  if (games.length === 0) {
-    area.innerHTML = "登板履歴はありません。";
-    return;
-  }
-
-  area.innerHTML = "";
-
-  games.forEach((game, index) => {
-    const pitch = getGamePitch(game);
-
-    area.innerHTML += `
-      <div class="history-item" onclick="loadGame(${index})">
-        ${game.date}<br>
-        ${game.title}<br>
-        ${pitch}球
-      </div>
-    `;
-  });
-}
-
-function getGamePitch(game) {
-  let total = 0;
-
-  for (const type in pitchTypes) {
-    pitchItems.forEach(item => {
-      total += game.counts[type][item];
-    });
-  }
-
-  return total;
-}
-
-function createButtons() {
-  const area = document.getElementById("pitchButtons");
-  area.innerHTML = "";
-
-  for (const type in pitchTypes) {
-    area.innerHTML += `<div class="pitch-section"><h3>${pitchTypes[type].name}</h3><div class="button-grid">`;
-
-    pitchItems.forEach(item => {
-      area.innerHTML += `
-        <button class="${item}" onclick="addPitch('${type}', '${item}')">
-          ${itemNames[item]}
-        </button>
-      `;
-    });
-
-    area.innerHTML += `</div></div>`;
-  }
-}
-
-function addPitch(type, item) {
-  if (!requireGame()) return;
-
-  counts[type][item]++;
-
-  const inning = document.getElementById("inningSelect").value;
-  const group = pitchTypes[type].group;
-
-  inningCounts[inning][item]++;
-  inningCounts[inning][group]++;
-
-  savePlayers();
-  updateAll();
-}
-
-function addResult(resultType) {
-  if (!requireGame()) return;
-
-  const inning = document.getElementById("inningSelect").value;
-  inningCounts[inning][resultType]++;
-
-  savePlayers();
-  updateAll();
-}
-
-function sumType(type) {
-  return pitchItems.reduce((sum, item) => sum + counts[type][item], 0);
-}
-
-function sumGroup(group) {
-  let total = 0;
-  for (const type in pitchTypes) {
-    if (pitchTypes[type].group === group) total += sumType(type);
-  }
-  return total;
-}
-
-function sumItem(item, group = null) {
-  let total = 0;
-  for (const type in pitchTypes) {
-    if (group === null || pitchTypes[type].group === group) {
-      total += counts[type][item];
-    }
-  }
-  return total;
-}
-
-function strikeCount(group = null) {
-  return sumItem("called", group) + sumItem("foul", group) + sumItem("swing", group) + sumItem("out", group) + sumItem("hit", group);
-}
-
-function battingAverage(group = null, type = null) {
-  let hit = 0;
-  let out = 0;
-
-  if (type) {
-    hit = counts[type].hit;
-    out = counts[type].out;
-  } else {
-    hit = sumItem("hit", group);
-    out = sumItem("out", group);
-  }
-
-  const atBat = hit + out;
-  return atBat === 0 ? "0" : (hit / atBat).toFixed(3);
-}
-
-function percent(num, den) {
-  return den === 0 ? "0" : (num / den * 100).toFixed(1);
-}
-
-function totalResults(resultType) {
-  let total = 0;
-
-  for (let i = 1; i <= 9; i++) {
-    total += inningCounts[i][resultType];
-  }
-
-  return total;
-}
-
-function updateAll() {
-  const fastballPitch = sumGroup("fastball");
-  const breakingPitch = sumGroup("breaking");
-  const totalPitch = fastballPitch + breakingPitch;
-
-  const totalStrikeout = totalResults("strikeout");
-  const totalWalk = totalResults("walk");
-
-  document.getElementById("currentPlayerName").textContent = currentPlayer || "未選択";
-
-  document.getElementById("currentGameName").textContent =
-    currentGameIndex === null || !currentPlayer
-      ? "現在の登板：なし"
-      : "現在の登板：" + players[currentPlayer].games[currentGameIndex].title;
-
-  document.getElementById("totalPitch").textContent = totalPitch;
-  document.getElementById("fastballPitch").textContent = fastballPitch;
-  document.getElementById("breakingPitch").textContent = breakingPitch;
-
-  document.getElementById("fastballRate").textContent = percent(fastballPitch, totalPitch);
-  document.getElementById("breakingRate").textContent = percent(breakingPitch, totalPitch);
-  document.getElementById("strikeRate").textContent = percent(strikeCount(), totalPitch);
-  document.getElementById("swingRate").textContent = percent(sumItem("swing"), totalPitch);
-  document.getElementById("battingAverage").textContent = battingAverage();
-
-  document.getElementById("totalStrikeout").textContent = totalStrikeout;
-  document.getElementById("totalWalk").textContent = totalWalk;
-  document.getElementById("kbb").textContent = totalWalk === 0 ? totalStrikeout : (totalStrikeout / totalWalk).toFixed(2);
-
-  updateGroupTable(totalPitch);
-  updatePitchTypeTable();
-  updateInningTable();
-}
-
-function updateGroupTable(totalPitch) {
-  const tbody = document.getElementById("groupTable");
-  tbody.innerHTML = "";
-
-  [
-    { key: "fastball", name: "直球" },
-    { key: "breaking", name: "変化球" }
-  ].forEach(g => {
-    const pitch = sumGroup(g.key);
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${g.name}</td>
-        <td>${pitch}</td>
-        <td>${percent(pitch, totalPitch)}%</td>
-        <td>${percent(strikeCount(g.key), pitch)}%</td>
-        <td>${percent(sumItem("swing", g.key), pitch)}%</td>
-        <td>${battingAverage(g.key)}</td>
-      </tr>
-    `;
-  });
-}
-
-function updatePitchTypeTable() {
-  const tbody = document.getElementById("pitchTypeTable");
-  tbody.innerHTML = "";
-
-  for (const type in pitchTypes) {
-    const pitch = sumType(type);
-    const strike = counts[type].called + counts[type].foul + counts[type].swing + counts[type].out + counts[type].hit;
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${pitchTypes[type].name}</td>
-        <td>${pitch}</td>
-        <td>${percent(strike, pitch)}%</td>
-        <td>${percent(counts[type].swing, pitch)}%</td>
-        <td>${battingAverage(null, type)}</td>
-        <td>${counts[type].out}</td>
-        <td>${counts[type].hit}</td>
-      </tr>
-    `;
-  }
-}
-
-function updateInningTable() {
-  const tbody = document.getElementById("inningTable");
-  tbody.innerHTML = "";
-
-  for (let i = 1; i <= 9; i++) {
-    const d = inningCounts[i];
-    const strike = d.called + d.foul + d.swing + d.out + d.hit;
-    const pitch = strike + d.ball;
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${i}回</td>
-        <td>${pitch}</td>
-        <td>${d.fastball}</td>
-        <td>${d.breaking}</td>
-        <td>${strike}</td>
-        <td>${d.ball}</td>
-        <td>${d.called}</td>
-        <td>${d.foul}</td>
-        <td>${d.swing}</td>
-        <td>${d.out}</td>
-        <td>${d.hit}</td>
-        <td>${d.strikeout}</td>
-        <td>${d.walk}</td>
-      </tr>
-    `;
-  }
-}
-
-function resetCurrentGame() {
-  if (!requireGame()) return;
-
-  if (!confirm("現在の登板をリセットしますか？")) return;
-
-  const data = createEmptyData();
-  players[currentPlayer].games[currentGameIndex].counts = data.counts;
-  players[currentPlayer].games[currentGameIndex].inningCounts = data.inningCounts;
-
-  loadCurrentGame();
-  savePlayers();
-}
-
-createButtons();
-updatePlayerSelect();
-loadEmpty();
-</script>
 
 </body>
 </html>
