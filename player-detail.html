@@ -9,7 +9,6 @@
 :root {
   --navy:#041e42;
   --red:#bf0d3e;
-  --gold:#f59e0b;
   --line:#d7dce3;
 }
 
@@ -20,21 +19,6 @@ body {
   color:#111827;
 }
 
-header {
-  background:#041e42;
-  color:white;
-  padding:22px;
-  text-align:center;
-  border-bottom:5px solid var(--red);
-}
-
-h1 {
-  margin:0;
-  font-size:30px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-
 .container {
   max-width:1200px;
   margin:auto;
@@ -42,11 +26,29 @@ h1 {
 }
 
 .card {
-  background:rgba(255,255,255,0.96);
+  background:rgba(255,255,255,.96);
   border-radius:18px;
   padding:18px;
   margin-bottom:18px;
-  box-shadow:0 10px 24px rgba(4,30,66,0.18);
+  box-shadow:0 10px 24px rgba(4,30,66,.18);
+}
+
+.hero {
+  background:linear-gradient(135deg,#111827,#041e42);
+  color:white;
+  border-radius:18px;
+  padding:32px 24px;
+  margin-bottom:18px;
+}
+
+.hero-name {
+  font-size:34px;
+  font-weight:900;
+}
+
+.hero-role {
+  margin-top:8px;
+  color:#d1d5db;
 }
 
 h2 {
@@ -58,18 +60,18 @@ h2 {
   font-weight:900;
 }
 
-.button-grid {
+.nav {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:10px;
 }
 
-.link-btn {
-  background:linear-gradient(#041e42,#0b2447);
+.nav a {
+  background:#041e42;
   color:white;
   text-decoration:none;
   text-align:center;
-  padding:15px;
+  padding:14px;
   border-radius:12px;
   font-weight:900;
 }
@@ -81,7 +83,7 @@ h2 {
 }
 
 .stat {
-  background:linear-gradient(180deg,#ffffff,#eef2f7);
+  background:linear-gradient(180deg,#fff,#eef2f7);
   border-radius:14px;
   padding:14px;
   text-align:center;
@@ -139,137 +141,78 @@ tr:nth-child(even) td {
   font-weight:bold;
 }
 
-.player-hero {
-  background:linear-gradient(135deg,#111827,#041e42);
-  color:white;
-  border-radius:18px;
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-}
-
-.player-hero::after {
-  content:"";
-  position:absolute;
-  right:-40px;
-  bottom:-40px;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.06);
-}
-
-.player-name {
-  font-size:34px;
-  font-weight:900;
-  position:relative;
-  z-index:1;
-}
-
-.player-role {
-  color:#d1d5db;
-  margin-top:6px;
-  position:relative;
-  z-index:1;
-}
-
 @media(max-width:700px) {
-  h1 { font-size:24px; }
   .container { padding:10px; }
   .summary-grid { grid-template-columns:repeat(2,1fr); }
+  .hero-name { font-size:28px; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>選手詳細</h1>
-</header>
-
 <div class="container">
 
-<div class="card">
-  <div class="button-grid">
-    <a href="index.html" class="link-btn">メインページへ戻る</a>
-    <a href="players.html" class="link-btn">選手名鑑へ戻る</a>
-    <a href="record.html" class="link-btn">投球記録ページへ</a>
+  <div class="card">
+    <div class="nav">
+      <a href="index.html">メインページへ戻る</a>
+      <a href="players.html">選手名鑑へ戻る</a>
+      <a href="record.html">投球記録ページへ</a>
+    </div>
   </div>
-</div>
 
-<div class="player-hero">
-  <div class="player-name" id="playerName">選手名</div>
-  <div class="player-role">投手</div>
-</div>
-
-<br>
-
-<div class="card">
-  <h2>通算成績</h2>
-  <div class="summary-grid">
-    <div class="stat"><div class="stat-title">登板数</div><div class="stat-value" id="gameCount">0</div></div>
-    <div class="stat"><div class="stat-title">総投球数</div><div class="stat-value" id="totalPitch">0</div></div>
-    <div class="stat"><div class="stat-title">直球</div><div class="stat-value" id="fastballPitch">0</div></div>
-    <div class="stat"><div class="stat-title">変化球</div><div class="stat-value" id="breakingPitch">0</div></div>
-    <div class="stat"><div class="stat-title">直球割合</div><div class="stat-value"><span id="fastballRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">変化球割合</div><div class="stat-value"><span id="breakingRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">ストライク率</div><div class="stat-value"><span id="strikeRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">空振り率</div><div class="stat-value"><span id="swingRate">0</span>%</div></div>
-    <div class="stat"><div class="stat-title">被打率</div><div class="stat-value" id="battingAverage">0</div></div>
-    <div class="stat"><div class="stat-title">三振</div><div class="stat-value" id="totalStrikeout">0</div></div>
-    <div class="stat"><div class="stat-title">四球</div><div class="stat-value" id="totalWalk">0</div></div>
-    <div class="stat"><div class="stat-title">K/BB</div><div class="stat-value" id="kbb">0</div></div>
+  <div class="hero">
+    <div class="hero-name" id="playerName">選手名</div>
+    <div class="hero-role">投手</div>
   </div>
-</div>
 
-<div class="card">
-  <h2>直球・変化球別 通算</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>区分</th>
-          <th>投球数</th>
-          <th>割合</th>
-          <th>ストライク率</th>
-          <th>空振り率</th>
-          <th>被打率</th>
-        </tr>
-      </thead>
-      <tbody id="groupTable"></tbody>
-    </table>
+  <div class="card">
+    <h2>通算成績</h2>
+    <div class="summary-grid">
+      <div class="stat"><div class="stat-title">登板数</div><div class="stat-value" id="gameCount">0</div></div>
+      <div class="stat"><div class="stat-title">総投球数</div><div class="stat-value" id="totalPitch">0</div></div>
+      <div class="stat"><div class="stat-title">直球</div><div class="stat-value" id="fastballPitch">0</div></div>
+      <div class="stat"><div class="stat-title">変化球</div><div class="stat-value" id="breakingPitch">0</div></div>
+      <div class="stat"><div class="stat-title">直球割合</div><div class="stat-value"><span id="fastballRate">0</span>%</div></div>
+      <div class="stat"><div class="stat-title">変化球割合</div><div class="stat-value"><span id="breakingRate">0</span>%</div></div>
+      <div class="stat"><div class="stat-title">ストライク率</div><div class="stat-value"><span id="strikeRate">0</span>%</div></div>
+      <div class="stat"><div class="stat-title">空振り率</div><div class="stat-value"><span id="swingRate">0</span>%</div></div>
+      <div class="stat"><div class="stat-title">被打率</div><div class="stat-value" id="battingAverage">0</div></div>
+      <div class="stat"><div class="stat-title">三振</div><div class="stat-value" id="totalStrikeout">0</div></div>
+      <div class="stat"><div class="stat-title">四球</div><div class="stat-value" id="totalWalk">0</div></div>
+      <div class="stat"><div class="stat-title">K/BB</div><div class="stat-value" id="kbb">0</div></div>
+    </div>
   </div>
-</div>
 
-<div class="card">
-  <h2>球種別 通算成績</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>球種</th>
-          <th>投球数</th>
-          <th>ストライク率</th>
-          <th>空振り率</th>
-          <th>被打率</th>
-          <th>凡打</th>
-          <th>安打</th>
-        </tr>
-      </thead>
-      <tbody id="pitchTypeTable"></tbody>
-    </table>
+  <div class="card">
+    <h2>球種別 通算成績</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>球種</th>
+            <th>投球数</th>
+            <th>ストライク率</th>
+            <th>空振り率</th>
+            <th>被打率</th>
+            <th>凡打</th>
+            <th>安打</th>
+          </tr>
+        </thead>
+        <tbody id="pitchTypeTable"></tbody>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="card">
-  <h2>登板履歴</h2>
-  <div id="historyArea">登板履歴はありません。</div>
-</div>
+  <div class="card">
+    <h2>登板履歴</h2>
+    <div id="historyArea">登板履歴はありません。</div>
+  </div>
 
-<div class="card">
-  <h2>選択した登板の詳細</h2>
-  <div id="gameDetailArea">登板履歴をクリックしてください。</div>
-</div>
+  <div class="card">
+    <h2>選択した登板の詳細</h2>
+    <div id="gameDetailArea">登板履歴をクリックしてください。</div>
+  </div>
 
 </div>
 
@@ -299,11 +242,7 @@ function createEmptyTotals() {
     pitchItems.forEach(item => totals[type][item] = 0);
   }
 
-  totals.results = {
-    strikeout: 0,
-    walk: 0
-  };
-
+  totals.results = { strikeout:0, walk:0 };
   return totals;
 }
 
@@ -332,25 +271,21 @@ function sumType(totals, type) {
 
 function sumGroup(totals, group) {
   let total = 0;
-
   for (const type in pitchTypes) {
     if (pitchTypes[type].group === group) {
       total += sumType(totals, type);
     }
   }
-
   return total;
 }
 
 function sumItem(totals, item, group = null) {
   let total = 0;
-
   for (const type in pitchTypes) {
     if (group === null || pitchTypes[type].group === group) {
       total += totals[type][item];
     }
   }
-
   return total;
 }
 
@@ -386,13 +321,11 @@ function percent(num, den) {
 
 function getGamePitch(game) {
   let total = 0;
-
   for (const type in pitchTypes) {
     pitchItems.forEach(item => {
       total += game.counts?.[type]?.[item] || 0;
     });
   }
-
   return total;
 }
 
@@ -416,31 +349,6 @@ function updateSummary(name, games, totals) {
   document.getElementById("totalStrikeout").textContent = strikeout;
   document.getElementById("totalWalk").textContent = walk;
   document.getElementById("kbb").textContent = walk === 0 ? strikeout : (strikeout / walk).toFixed(2);
-}
-
-function updateGroupTable(totals) {
-  const tbody = document.getElementById("groupTable");
-  tbody.innerHTML = "";
-
-  const totalPitch = sumGroup(totals, "fastball") + sumGroup(totals, "breaking");
-
-  [
-    { key: "fastball", name: "直球" },
-    { key: "breaking", name: "変化球" }
-  ].forEach(g => {
-    const pitch = sumGroup(totals, g.key);
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${g.name}</td>
-        <td>${pitch}</td>
-        <td>${percent(pitch, totalPitch)}%</td>
-        <td>${percent(strikeCount(totals, g.key), pitch)}%</td>
-        <td>${percent(sumItem(totals, "swing", g.key), pitch)}%</td>
-        <td>${battingAverage(totals, g.key)}</td>
-      </tr>
-    `;
-  });
 }
 
 function updatePitchTypeTable(totals) {
@@ -582,7 +490,6 @@ function init() {
   const totals = aggregateGames(games);
 
   updateSummary(playerName, games, totals);
-  updateGroupTable(totals);
   updatePitchTypeTable(totals);
   updateHistory(games);
 }
