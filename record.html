@@ -69,6 +69,7 @@ h3 {
   color:white;
   padding:10px 12px;
   border-radius:10px;
+  margin-bottom:10px;
 }
 
 input, select {
@@ -393,7 +394,6 @@ const pitchTypes = {
 };
 
 const pitchItems = ["called", "foul", "swing", "ball", "out", "hit"];
-const resultItems = ["strikeout", "walk"];
 
 const itemNames = {
   called:"見逃し",
@@ -411,8 +411,8 @@ let currentGameIndex = null;
 let counts = {};
 let inningCounts = {};
 let gameState = {
-  currentInning: 1,
-  currentOuts: 0
+  currentInning:1,
+  currentOuts:0
 };
 
 function createEmptyData(startInning = 1, startOuts = 0) {
@@ -442,7 +442,7 @@ function createEmptyData(startInning = 1, startOuts = 0) {
   return {
     counts:c,
     inningCounts:i,
-    gameState: {
+    gameState:{
       currentInning:startInning,
       currentOuts:startOuts
     }
@@ -562,17 +562,19 @@ function createButtons() {
   area.innerHTML = "";
 
   for (const type in pitchTypes) {
-    area.innerHTML += `<div class="pitch-section"><h3>${pitchTypes[type].name}</h3><div class="pitch-button-grid">`;
-
-    pitchItems.forEach(item => {
-      area.innerHTML += `
-        <button class="${item}" onclick="addPitch('${type}', '${item}')">
-          ${itemNames[item]}
-        </button>
-      `;
-    });
-
-    area.innerHTML += `</div></div>`;
+    area.innerHTML += `
+      <div class="pitch-section">
+        <h3>${pitchTypes[type].name}</h3>
+        <div class="pitch-button-grid">
+          <button class="called" onclick="addPitch('${type}', 'called')">見逃し</button>
+          <button class="foul" onclick="addPitch('${type}', 'foul')">ファール</button>
+          <button class="swing" onclick="addPitch('${type}', 'swing')">空振り</button>
+          <button class="ball" onclick="addPitch('${type}', 'ball')">ボール</button>
+          <button class="out" onclick="addPitch('${type}', 'out')">凡打</button>
+          <button class="hit" onclick="addPitch('${type}', 'hit')">安打</button>
+        </div>
+      </div>
+    `;
   }
 }
 
